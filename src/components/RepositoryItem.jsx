@@ -1,33 +1,33 @@
-import { Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import theme from '../themes/theme';
+import ItemDescription from './ItemDescription';
+import ItemRatings from './ItemRatings';
 
-const style = StyleSheet.create({
-  items: {
-    fontSize: theme.fontSizes.body,
-    fontWeight: theme.fontWeights.normal,
-    fontFamily: theme.fonts.main,
-    color: theme.colors.black,
-    padding: 5,
-  }
+const styles = StyleSheet.create({
+  itemContainer: {
+    backgroundColor: theme.colors.white,
+    borderRadius: 10,
+    margin: 5,
+    padding: 5
+  },
 });
 
 const RepositoryItem = ({item}) => {
   return (
-    <Text style={style.items}>
-      Full name: {item.fullName}
-      {'\n'}
-      Description: {item.description}
-      {'\n'}
-      Language: {item.language}
-      {'\n'}
-      Stars: {item.stargazersCount}
-      {'\n'}
-      Forks: {item.forksCount}
-      {'\n'}
-      Reviews: {item.reviewCount}
-      {'\n'}
-      Rating: {item.ratingAverage}
-    </Text>
+    <View style={styles.itemContainer}>
+      <ItemDescription
+        fullName={item.fullName}
+        description={item.description}
+        language={item.language}
+        ownerAvatarUrl={item.ownerAvatarUrl} 
+      />
+      <ItemRatings
+        stargazersCount={item.stargazersCount}
+        forksCount={item.forksCount}
+        reviewCount={item.reviewCount}
+        ratingAverage={item.ratingAverage}
+      />
+    </View>
   );
 };
 

@@ -16,9 +16,9 @@ const styles = StyleSheet.create({
 
 const AppBar = () => {
   return (
-  <View style={styles.container}>
-    <AppBarTab header={'Repositories'}/>
-  </View>);
+    <View style={styles.container}>
+      <AppBarTab header={'Repositories'}/>
+    </View>);
 };
 
 export default AppBar;
