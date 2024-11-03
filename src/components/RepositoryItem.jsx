@@ -1,8 +1,19 @@
-import { Text } from 'react-native';
+import { Text, StyleSheet } from 'react-native';
+import theme from '../themes/theme';
+
+const style = StyleSheet.create({
+  items: {
+    fontSize: theme.fontSizes.body,
+    fontWeight: theme.fontWeights.normal,
+    fontFamily: theme.fonts.main,
+    color: theme.colors.black,
+    padding: 5,
+  }
+});
 
 const RepositoryItem = ({item}) => {
   return (
-    <Text>
+    <Text style={style.items}>
       Full name: {item.fullName}
       {'\n'}
       Description: {item.description}
