@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     fontWeight: theme.fontWeights.bold,
   },
   language: {
-    backgroundColor: theme.colors.languageBlue,
+    backgroundColor: theme.colors.blue,
     alignSelf: 'flex-start',
     borderRadius: 2,
     color: theme.colors.white,
