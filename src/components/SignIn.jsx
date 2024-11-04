@@ -17,7 +17,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingHorizontal: 10,
     fontSize: theme.fontSizes.subheading,
-    margin: 5
+    margin: 5,
+    fontFamily: theme.fonts.main
   },
   signInButton: {
     height: 45,
@@ -30,6 +31,7 @@ const styles = StyleSheet.create({
   text: {
     color: theme.colors.white,
     fontSize: theme.fontSizes.subheading,
+    fontFamily: theme.fonts.main,
   },
   errorText: {
     color: theme.colors.red,
