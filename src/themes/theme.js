@@ -5,7 +5,8 @@ const theme = {
     backGroundGrey: '#24292e',
     backGroundLightGrey: '#e1e4e8',
     blue: '#0366d6',
-    inputBorderGrey: '#ccc'
+    inputBorderGrey: '#ccc',
+    red: 'red',
   },
   fontSizes: {
     body: 14,
