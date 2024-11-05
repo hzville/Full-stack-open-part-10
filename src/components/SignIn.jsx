@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     fontSize: theme.fontSizes.subheading,
     fontFamily: theme.fonts.main,
   },
-  errorText: {
+  errorText: {
     color: theme.colors.red,
     alignSelf: 'flex-start',
     marginBottom: 10
