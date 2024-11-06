@@ -12,12 +12,19 @@ const styles = StyleSheet.create({
   }
 });
 
-const AppBarTab = ({header, linkTo}) => {
-  return (
-    <Pressable>
+const AppBarTab = ({header, linkTo, onPress}) => {
+
+  if (linkTo) {
+    return (       
       <Link to={linkTo}>
         <Text style={styles.item}>{header}</Text>
       </Link>
+    );
+  }
+
+  return (
+    <Pressable onPress={onPress}>
+      <Text style={styles.item}>{header}</Text>
     </Pressable>
   );
 };
