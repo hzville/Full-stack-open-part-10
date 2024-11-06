@@ -45,26 +45,12 @@ const styles = StyleSheet.create({
   }
 });
 
-const SignIn = () => {
+const validationSchema = yup.object().shape({
+  username: yup.string().required('Username is required'),
+  password: yup.string().required('Password is required')
+});
 
-  const [signIn] = useSignIn();
-  const navigate = useNavigate();
-
-  const validationSchema = yup.object().shape({
-      username: yup.string().required('Username is required'),
-      password: yup.string().required('Password is required')
-    });
-  
-  const authUser = async (values) => {
-    const { username, password } = values;
-    try {
-      await signIn({ username, password });
-      navigate('/');
-    } catch (e) {
-      console.log(e);
-    }
-
-  };
+export const SignInContainer = ({authUser}) => {
 
   const formik = useFormik({
     initialValues: {
@@ -74,7 +60,6 @@ const SignIn = () => {
     validationSchema,
     onSubmit: authUser,
   });
-
 
   return (
     <View style={styles.container}>
@@ -102,6 +87,25 @@ const SignIn = () => {
       </Pressable>
     </View>
   );
+};
+
+const SignIn = () => {
+
+  const [signIn] = useSignIn();
+  const navigate = useNavigate();
+  
+  const authUser = async (values) => {
+    const { username, password } = values;
+    try {
+      await signIn({ username, password });
+      navigate('/');
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  return <SignInContainer authUser={authUser} />;
+
 };
 
 export default SignIn;
