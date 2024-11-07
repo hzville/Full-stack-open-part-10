@@ -1,30 +1,8 @@
-import { Pressable, Text, View, StyleSheet } from "react-native";
+import { Text, FlatList } from "react-native";
 import { useParams } from "react-router-native";
 import { useSingleRepositoryId } from "../hooks/useRepositories";
-import RepositoryItem from "./RepositoryItem";
-import * as Linking from 'expo-linking';
-import theme from "../themes/theme";
-
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-  },
-  openUrlButton: {
-    height: 45,
-    width: '95%',
-    borderRadius: 5,
-    backgroundColor: theme.colors.blue,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  buttonText: {
-    color: theme.colors.white,
-    fontSize: theme.fontSizes.subheading,
-    fontFamily: theme.fonts.main,
-  },
-});
-
+import ReviewItem from "./ReviewItem";
+import SingleRepositoryInfo from "./SingleRepositoryInfo";
 
 const SingleView = () => {
   const { id } = useParams();
@@ -32,13 +10,15 @@ const SingleView = () => {
 
   if (!repository) return <Text>Repository not found</Text>;
 
-  return(
-    <View style={styles.container}>
-      <RepositoryItem item={repository} />
-      <Pressable onPress={() => Linking.openURL(repository.url)} style={styles.openUrlButton}>
-        <Text style={styles.buttonText}> Open in GitHub </Text>
-      </Pressable>
-    </View>
+  const reviews = repository.reviews ? repository.reviews.edges.map(edge => edge.node) : [];
+
+  return (
+    <FlatList
+    data={reviews}
+    renderItem={({ item }) => <ReviewItem review={item} />}
+    keyExtractor={({ id }) => id}
+    ListHeaderComponent={() => <SingleRepositoryInfo repository={repository} />}
+    />
   );
 };
 
