@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
-import { GET_REPOSITORIES } from '../graphql/queries';
+import { GET_REPOSITORIES, GET_SINGLE_REPOSITORY } from '../graphql/queries';
 
 
 const useRepositories = () => {
@@ -18,4 +18,21 @@ const useRepositories = () => {
   return { repositories, loading, error };
 };
 
-export default useRepositories;
+const useSingleRepositoryId = (id) => {
+  const [repository, setRepository] = useState();
+  const { data, loading, error} = useQuery(GET_SINGLE_REPOSITORY, {
+    variables: { repositoryId: id},
+    fetchPolicy: 'cache-and-network',
+  });
+
+  useEffect(() => {
+    if (data) {
+      setRepository(data.repository);
+    }
+  }, [data]);
+
+  return { repository, loading, error};
+
+};
+
+export { useRepositories, useSingleRepositoryId };
