@@ -37,7 +37,10 @@ const AppBar = () => {
       <ScrollView horizontal contentContainerStyle={styles.scrollView}>
         <AppBarTab header={'Repositories'} linkTo={'/'} />
         {user ?  (
-          <AppBarTab link={"/"} header={'Sign out'} onPress={signOutUser} />
+          <>
+            <AppBarTab header={'Create a review'} linkTo={"/create-review"}/>
+            <AppBarTab header={'Sign out'} onPress={signOutUser} />
+          </>
         ) : (
           <AppBarTab header={'Sign in'} linkTo={'/signin'} />
         )}

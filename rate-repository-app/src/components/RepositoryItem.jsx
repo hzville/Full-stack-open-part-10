@@ -24,7 +24,7 @@ const RepositoryItem = ({item}) => {
   return (
     <Pressable 
       style={styles.pressableContainer} 
-      onPress={() => navigate(`/singleView/${item.id}`)}
+      onPress={() => navigate(`/single-view/${item.id}`)}
     >
       <View style={styles.itemContainer} testID="repositoryItem">
         <ItemDescription
