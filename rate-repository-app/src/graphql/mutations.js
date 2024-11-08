@@ -17,3 +17,13 @@ export const CREATE_REVIEW = gql`
     }
   }
 `;
+
+export const SIGN_UP_USER = gql`
+  mutation CreateUser($user: CreateUserInput) {
+  createUser(user: $user) {
+    id
+    username
+    createdAt
+  }
+}
+`;

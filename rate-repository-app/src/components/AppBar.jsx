@@ -29,7 +29,7 @@ const AppBar = () => {
   const signOutUser = async () => {
     await authStorage.removeAccessToken();
     await apolloClient.resetStore();
-    navigate('/signin');
+    navigate('/sign-in');
   };
 
   return (
@@ -42,7 +42,10 @@ const AppBar = () => {
             <AppBarTab header={'Sign out'} onPress={signOutUser} />
           </>
         ) : (
-          <AppBarTab header={'Sign in'} linkTo={'/signin'} />
+          <>
+            <AppBarTab header={'Sign in'} linkTo={'/sign-in'} />
+            <AppBarTab header={'Sign up'} linkTo={'/sign-up'} />
+          </>
         )}
       </ScrollView>
     </View>
