@@ -3,6 +3,8 @@ import RepositoryItem from './RepositoryItem';
 import { useRepositories } from '../hooks/useRepositories';
 import { useState } from 'react';
 import OrderSelector from './OrderSelector';
+import SearchBar from './SearchBar';
+
 
 const styles = StyleSheet.create({
   separator: {
@@ -12,7 +14,7 @@ const styles = StyleSheet.create({
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-export const RepositoryListContainer = ({ repositories, setOrder }) => {
+export const RepositoryListContainer = ({ repositories, setOrder, setFilter }) => {
   const repositoryNodes = repositories ? repositories.edges.map(edge => edge.node) : [];
 
   return (
@@ -20,15 +22,21 @@ export const RepositoryListContainer = ({ repositories, setOrder }) => {
       data={repositoryNodes}
       ItemSeparatorComponent={ItemSeparator}
       renderItem={({item}) => <RepositoryItem item={item}/>}
-      ListHeaderComponent={ <OrderSelector setOrder={setOrder}/>}
+      ListHeaderComponent={(
+        <>
+          <SearchBar setFilter={setFilter}/>
+          <OrderSelector setOrder={setOrder} />
+        </>
+      )}
     />
   );
 };
 
 const RepositoryList = () => {
   const [order, setOrder] = useState('latest');
-  const { repositories } = useRepositories(order);
-  return <RepositoryListContainer repositories={repositories} setOrder={setOrder}/>;
+  const [filter, setFilter] = useState('');
+  const { repositories } = useRepositories(order, filter);
+  return <RepositoryListContainer repositories={repositories} setOrder={setOrder} setFilter={setFilter}/>;
 };
 
 export default RepositoryList;
