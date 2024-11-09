@@ -39,6 +39,7 @@ const AppBar = () => {
         {user ?  (
           <>
             <AppBarTab header={'Create a review'} linkTo={"/create-review"}/>
+            <AppBarTab header={'My reviews'} linkTo={"/user-reviews"}/>
             <AppBarTab header={'Sign out'} onPress={signOutUser} />
           </>
         ) : (
