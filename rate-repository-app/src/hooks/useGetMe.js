@@ -5,7 +5,7 @@ import { GET_ME } from '../graphql/queries';
 
 const useGetMe = (includeReviews = false) => {
   const [user, setUser] = useState();
-  const { data, loading, error } = useQuery(GET_ME, {
+  const { data, loading, error, refetch } = useQuery(GET_ME, {
     variables: { includeReviews },
   });
 
@@ -15,7 +15,7 @@ const useGetMe = (includeReviews = false) => {
     }
   });
 
-  return { user, loading, error};
+  return { user, loading, error, refetch};
 };
 
 export default useGetMe;

@@ -1,6 +1,7 @@
 import { Text, View, StyleSheet } from "react-native";
 import theme from "../themes/theme";
 import { format } from 'date-fns';
+import ReviewButtons from "./ReviewButtons";
 
 const styles = StyleSheet.create({
   container: {
@@ -39,8 +40,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const ReviewItem = ({review}) => {
+const ReviewItem = ({review, displayButtons, refetch}) => {
+
   if (!review) return <Text>No reviews yet</Text>;
+  
   return (
     <View style={styles.container}>
       <View style={styles.ratingCircle}>
@@ -54,6 +57,11 @@ const ReviewItem = ({review}) => {
         }
         <Text>{format(new Date(review.createdAt), "dd.MM.yyyy")}</Text>
         <Text style={styles.reviewText}>{review.text}</Text>
+        {
+          displayButtons && (
+            <ReviewButtons review={review} refetch={refetch} />
+          )
+        }
       </View>
     </View>
   );

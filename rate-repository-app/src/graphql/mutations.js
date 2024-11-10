@@ -21,9 +21,15 @@ export const CREATE_REVIEW = gql`
 export const SIGN_UP_USER = gql`
   mutation CreateUser($user: CreateUserInput) {
   createUser(user: $user) {
-    id
-    username
-    createdAt
+      id
+      username
+      createdAt
+    }
   }
-}
+`;
+
+export const DELETE_REVIEW = gql`
+  mutation DeleteReview($deleteReviewId: ID!) {
+  deleteReview(id: $deleteReviewId)
+  }
 `;
